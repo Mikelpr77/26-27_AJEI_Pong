@@ -5,6 +5,7 @@ public class movimientopelota : MonoBehaviour
 {
     public float speed;
     Vector3 dir;
+    public GestordePuntuacin puntuacion;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +23,8 @@ public class movimientopelota : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+       
+
         Debug.Log("he atravesado: " + collision.gameObject.tag);
 
         if(collision.gameObject.tag == "Horizontal")
@@ -36,6 +39,16 @@ public class movimientopelota : MonoBehaviour
         {
             transform.position = new Vector3(0, 0);
             Spawn();
+            if (collision.gameObject.name == "Porteria a")
+            {
+                Debug.Log("El jugador B ha marcado al jugador A");
+                puntuacion.puntuacionB = puntuacion.puntuacionB+ 1;
+            }
+            if (collision.gameObject.name == "Porteria b ")
+            {
+                Debug.Log("El jugador A ha marcado al jugador B");
+                puntuacion.puntuacionA = puntuacion.puntuacionA + 1;
+            }
         }
     }
 
